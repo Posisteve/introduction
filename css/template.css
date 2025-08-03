@@ -1,0 +1,28 @@
+/*
+Farben
+--clr-background
+--clr-background-secondary
+--clr-font-primary
+--clr-font-secondary
+--clr-accent
+--clr-border
+--clr-border-subtle
+*/
+
+:root {
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+	}
+}
+
+@media (width <= 40rem) {
+	:root {
+	}
+}
