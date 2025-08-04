@@ -1,0 +1,181 @@
+:root {
+    scroll-behavior: smooth;
+
+    /*farben*/
+    /*grayscale*/
+    --c_bw_100: hsl(0, 0%, 100%);
+    --c_bw_90: hsl(0, 0%, 90%);
+    --c_bw_80: hsl(0, 0%, 80%);
+    --c_bw_70: hsl(0, 0%, 70%);
+    --c_bw_60: hsl(0, 0%, 60%);
+    --c_bw_50: hsl(0, 0%, 50%);
+    --c_bw_40: hsl(0, 0%, 40%);
+    --c_bw_30: hsl(0, 0%, 30%);
+    --c_bw_20: hsl(0, 0%, 20%);
+    --c_bw_10: hsl(0, 0%, 10%);
+    --c_bw_0: hsl(0, 0%, 0%);
+
+    /*red*/
+    --c_r_100: hsl(0, 100%, 100%);
+    --c_r_90: hsl(0, 100%, 90%);
+    --c_r_80: hsl(0, 100%, 80%);
+    --c_r_70: hsl(0, 100%, 70%);
+    --c_r_60: hsl(0, 100%, 60%);
+    --c_r_50: hsl(0, 100%, 50%);
+    --c_r_40: hsl(0, 100%, 40%);
+    --c_r_30: hsl(0, 100%, 30%);
+    --c_r_20: hsl(0, 100%, 20%);
+    --c_r_10: hsl(0, 100%, 10%);
+
+    /*green*/
+    --c_g_100: hsl(120, 100%, 100%);
+    --c_g_90: hsl(120, 100%, 90%);
+    --c_g_80: hsl(120, 100%, 80%);
+    --c_g_70: hsl(120, 100%, 70%);
+    --c_g_60: hsl(120, 100%, 60%);
+    --c_g_50: hsl(120, 100%, 50%);
+    --c_g_40: hsl(120, 100%, 40%);
+    --c_g_30: hsl(120, 100%, 30%);
+    --c_g_20: hsl(120, 100%, 20%);
+    --c_g_10: hsl(120, 100%, 10%);
+
+    /*blue*/
+    --c_b_100: hsl(240, 100%, 100%);
+    --c_b_90: hsl(240, 100%, 90%);
+    --c_b_80: hsl(240, 100%, 80%);
+    --c_b_70: hsl(240, 100%, 70%);
+    --c_b_60: hsl(240, 100%, 60%);
+    --c_b_50: hsl(240, 100%, 50%);
+    --c_b_40: hsl(240, 100%, 40%);
+    --c_b_30: hsl(240, 100%, 30%);
+    --c_b_20: hsl(240, 100%, 20%);
+    --c_b_10: hsl(240, 100%, 10%);
+
+    /*yellow*/
+    --c_y_100: hsl(60, 100%, 100%);
+    --c_y_90: hsl(60, 100%, 90%);
+    --c_y_80: hsl(60, 100%, 80%);
+    --c_y_70: hsl(60, 100%, 70%);
+    --c_y_60: hsl(60, 100%, 60%);
+    --c_y_50: hsl(60, 100%, 50%);
+    --c_y_40: hsl(60, 100%, 40%);
+    --c_y_30: hsl(60, 100%, 30%);
+    --c_y_20: hsl(60, 100%, 20%);
+    --c_y_10: hsl(60, 100%, 10%);
+
+    /*orange*/
+    --c_o_100: hsl(30, 100%, 100%);
+    --c_o_90: hsl(30, 100%, 90%);
+    --c_o_80: hsl(30, 100%, 80%);
+    --c_o_70: hsl(30, 100%, 70%);
+    --c_o_60: hsl(30, 100%, 60%);
+    --c_o_50: hsl(30, 100%, 50%);
+    --c_o_40: hsl(30, 100%, 40%);
+    --c_o_30: hsl(30, 100%, 30%);
+    --c_o_20: hsl(30, 100%, 20%);
+    --c_o_10: hsl(30, 100%, 10%);
+
+    /*pink*/
+    --c_p_100: hsl(330, 100%, 100%);
+    --c_p_90: hsl(330, 100%, 90%);
+    --c_p_80: hsl(330, 100%, 80%);
+    --c_p_70: hsl(330, 100%, 70%);
+    --c_p_60: hsl(330, 100%, 60%);
+    --c_p_50: hsl(330, 100%, 50%);
+    --c_p_40: hsl(330, 100%, 40%);
+    --c_p_30: hsl(330, 100%, 30%);
+    --c_p_20: hsl(330, 100%, 20%);
+    --c_p_10: hsl(330, 100%, 10%);
+
+    /*purple*/
+    --c_pu_100: hsl(300, 100%, 100%);
+    --c_pu_90: hsl(300, 100%, 90%);
+    --c_pu_80: hsl(300, 100%, 80%);
+    --c_pu_70: hsl(300, 100%, 70%);
+    --c_pu_60: hsl(300, 100%, 60%);
+    --c_pu_50: hsl(300, 100%, 50%);
+    --c_pu_40: hsl(300, 100%, 40%);
+    --c_pu_30: hsl(300, 100%, 30%);
+    --c_pu_20: hsl(300, 100%, 20%);
+    --c_pu_10: hsl(300, 100%, 10%);
+
+    /*teal*/
+    --c_t_100: hsl(180, 100%, 100%);
+    --c_t_90: hsl(180, 100%, 90%);
+    --c_t_80: hsl(180, 100%, 80%);
+    --c_t_70: hsl(180, 100%, 70%);
+    --c_t_60: hsl(180, 100%, 60%);
+    --c_t_50: hsl(180, 100%, 50%);
+    --c_t_40: hsl(180, 100%, 40%);
+    --c_t_30: hsl(180, 100%, 30%);
+    --c_t_20: hsl(180, 100%, 20%);
+    --c_t_10: hsl(180, 100%, 10%);
+
+    /*brown*/
+    --c_brown_100: hsl(60, 100%, 100%);
+    --c_brown_90: hsl(60, 100%, 90%);
+    --c_brown_80: hsl(60, 100%, 80%);
+    --c_brown_70: hsl(60, 100%, 70%);
+    --c_brown_60: hsl(60, 100%, 60%);
+    --c_brown_50: hsl(60, 100%, 50%);
+    --c_brown_40: hsl(60, 100%, 40%);
+    --c_brown_30: hsl(60, 100%, 30%);
+    --c_brown_20: hsl(60, 100%, 20%);
+    --c_brown_10: hsl(60, 100%, 10%);
+
+    /* Light-Modus Farben */
+    --light-background: hsl(30, 20%, 98%); /* Cremiges Weiß mit warmem Ton */
+    --light-background-secondary: hsl(350, 20%, 92%); /* Subtiles Rosé */
+    --light-font-primary: hsl(200, 10%, 20%); /* Dunkles Anthrazit */
+    --light-font-secondary: hsl(200, 10%, 40%); /* Sanftes Grau */
+    --light-accent: hsl(224, 60%, 45%);
+    --light-border: hsl(30, 10%, 80%); /* Warmes, subtiles Grau */
+    --light-border-subtle: hsl(30, 10%, 88%); /* Noch subtileres Grau */
+
+    /* Dark-Modus Farben */
+    --dark-background: hsl(260, 10%, 12%); /* Tiefes Anthrazit mit violettem Unterton */
+    --dark-background-secondary: hsl(270, 15%, 18%); /* Dunkles Violett */
+    --dark-font-primary: hsl(30, 20%, 90%); /* Helles Cremeweiß */
+    --dark-font-secondary: hsl(200, 10%, 70%); /* Sanftes Silber */
+    --dark-accent: hsl(209, 50%, 50%);
+    --dark-border: hsl(260, 10%, 30%); /* Dunkles, warmes Grau */
+    --dark-border-subtle: hsl(260, 10%, 24%); /* Subtileres dunkles Grau */
+
+    /*abstände*/
+    --fs-xl: clamp(3.5rem, 12vw + 1rem, 12rem);
+    --fs-600: 2rem;
+    --fs-400: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-background: var(--dark-background);
+        --clr-background-secondary: var(--dark-background-secondary);
+        --clr-font-primary: var(--dark-font-primary);
+        --clr-font-secondary: var(--dark-font-secondary);
+        --clr-accent: var(--dark-accent);
+        --clr-border: var(--dark-border);
+        --clr-border-subtle: var(--dark-border-subtle);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --clr-background: var(--light-background);
+        --clr-background-secondary: var(--light-background-secondary);
+        --clr-font-primary: var(--light-font-primary);
+        --clr-font-secondary: var(--light-font-secondary);
+        --clr-accent: var(--light-accent);
+        --clr-border: var(--light-border);
+        --clr-border-subtle: var(--light-border-subtle);
+    }
+}
+
+/*@media only screen and (min-width: 35em) {*/
+/*@media only screen and (min-width: 320px) and (max-width: 720px) {*/
+@media (width <= 40rem) {
+    :root {
+        --fs-600: 3rem;
+        --fs-400: 1.125rem;
+    }
+}
