@@ -6,3 +6,33 @@
 }
 
 /* Desktop */
+
+.main_content {
+    height: 100vh;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 1fr 1.618fr;
+}
+
+.content_left_wrapper {
+    background-color: green;
+}
+
+.content_left {
+    background-color: lightgreen;
+    height: 100%;
+}
+
+.content_right_wrapper {
+    background-color: crimson;
+}
+
+.content_right {
+    background-color: lightcoral;
+}
+
+.content_left img {
+    /* width: 100%; */
+    max-height: 33rem;
+    border-radius: 0.8rem;
+}
