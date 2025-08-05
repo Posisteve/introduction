@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" href="css/style.css" />
         <script src="js/htmx.min.js"></script>
+        <script defer src="js/navigation.js"></script>
         <title>Introduction</title>
     </head>
     <body>
@@ -53,13 +54,35 @@
                 <nav>
                     <ul>
                         <li>
-                            <a hx-post="modul/about_me.html" hx-trigger="click" hx-target="#htmx_content_ziel" hx-swap="innerHTML">&Uuml;ber mich</a>
+                            <a
+                                onclick="clicked_navigation_element(this)"
+                                class="active_nav_element"
+                                hx-get="modul/about_me.html"
+                                hx-trigger="click"
+                                hx-target="#htmx_content_ziel"
+                                hx-swap="innerHTML"
+                                >&Uuml;ber mich</a
+                            >
                         </li>
                         <li>
-                            <a>Fähigkeiten</a>
+                            <a
+                                onclick="clicked_navigation_element(this)"
+                                hx-get="modul/skills.html"
+                                hx-trigger="click"
+                                hx-target="#htmx_content_ziel"
+                                hx-swap="innerHTML"
+                                >Fähigkeiten</a
+                            >
                         </li>
                         <li>
-                            <a>Hobbies</a>
+                            <a
+                                onclick="clicked_navigation_element(this)"
+                                hx-get="modul/hobbies.html"
+                                hx-trigger="click"
+                                hx-target="#htmx_content_ziel"
+                                hx-swap="innerHTML"
+                                >Hobbies</a
+                            >
                         </li>
                     </ul>
                 </nav>

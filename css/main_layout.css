@@ -76,6 +76,11 @@
     transform: translateY(0); /* Zurücksetzen der Position */
 }
 
+.active_nav_element {
+    background-color: rgba(255, 255, 255, 0.2); /* Stärkeres Feedback bei Klick */
+    transform: translateY(0); /* Zurücksetzen der Position */
+}
+
 /* #######################################   */
 .content_right_wrapper {
     background-color: crimson;
