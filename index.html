@@ -43,7 +43,7 @@
                                 <div class="card-particles"><span></span><span></span><span></span> <span></span><span></span><span></span></div>
                                 <div class="corner-elements"><span></span><span></span><span></span><span></span></div>
                                 <div class="scan-line"></div>
-                                <img src="img/toon_portrait/stylized_001.jpg" alt="toon portait" />
+                                <img src="img/toon_portrait/stylized_002.jpg" alt="toon portait" />
                             </div>
                         </div>
                     </div>
@@ -52,15 +52,21 @@
                 <!-- ############################# -->
                 <nav>
                     <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                        <li>Contact</li>
+                        <li>
+                            <a hx-post="modul/about_me.html" hx-trigger="click" hx-target="#htmx_content_ziel" hx-swap="innerHTML">&Uuml;ber mich</a>
+                        </li>
+                        <li>
+                            <a>Fähigkeiten</a>
+                        </li>
+                        <li>
+                            <a>Hobbies</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
 
             <div class="content_right_wrapper">
-                <div class="content_right"></div>
+                <div id="htmx_content_ziel" class="content_right">test</div>
             </div>
         </div>
     </body>

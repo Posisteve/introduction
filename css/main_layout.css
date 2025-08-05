@@ -18,11 +18,65 @@
     background-color: green;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     padding: 4rem 4rem;
 }
 
+/* NAVIGATION */
+
+.content_left nav {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    /* From https://css.glass */
+    background: rgba(48, 17, 123, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(48, 17, 123, 0.3);
+}
+
+.content_left nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.content_left nav ul li {
+    list-style: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.content_left nav ul li a {
+    /* color: #ffffff; Helle Schrift für Kontrast */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.content_left nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtiles Hover-Feedback */
+    transform: translateY(-2px); /* Leichtes Anheben */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.content_left nav ul li a:active {
+    background-color: rgba(255, 255, 255, 0.2); /* Stärkeres Feedback bei Klick */
+    transform: translateY(0); /* Zurücksetzen der Position */
+}
+
+/* #######################################   */
 .content_right_wrapper {
     background-color: crimson;
 }
