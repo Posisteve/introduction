@@ -1,0 +1,30 @@
+.content_right {
+    background-color: lightcoral;
+    width: 90%;
+    min-width: 80%;
+}
+
+.content_right .caption {
+    font-size: var(--fs-xl);
+    margin-bottom: 2rem;
+}
+
+.content_right .sub_caption {
+    font-size: var(--fs-600);
+    margin-bottom: 2rem;
+}
+
+.content_right blockquote {
+    font-style: italic;
+    padding-left: 3rem;
+    padding-top: 2rem;
+}
+
+.content_right blockquote p {
+    font-size: var(--fs-400);
+    padding-top: 2rem;
+}
+
+.content_right .sub_content {
+    font-size: var(--fs-500);
+}
