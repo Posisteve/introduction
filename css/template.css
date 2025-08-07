@@ -1,28 +1,28 @@
 /*
 Farben
---clr-background
---clr-background-secondary
---clr-font-primary
---clr-font-secondary
---clr-accent
---clr-border
---clr-border-subtle
+var(--clr-background);
+var(--clr-background-secondary);
+var(--clr-font-primary);
+var(--clr-font-secondary);
+var(--clr-accent);
+var(--clr-border);
+var(--clr-border-subtle);
 */
 
 :root {
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-	}
+    :root {
+    }
 }
 
 @media (prefers-color-scheme: light) {
-	:root {
-	}
+    :root {
+    }
 }
 
 @media (width <= 40rem) {
-	:root {
-	}
+    :root {
+    }
 }

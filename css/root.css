@@ -162,6 +162,13 @@
         --clr-accent: var(--dark-accent);
         --clr-border: var(--dark-border);
         --clr-border-subtle: var(--dark-border-subtle);
+
+        --clr-star-dark-09: rgba(255, 255, 255, 0.9);
+        --clr-star-dark-08: rgba(255, 255, 255, 0.8);
+        --clr-star-dark-07: rgba(255, 255, 255, 0.7);
+        --clr-star-dark-06: rgba(255, 255, 255, 0.6);
+        --clr-star-dark-05: rgba(255, 255, 255, 0.5);
+        --clr-star-dark-04: rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -174,6 +181,13 @@
         --clr-accent: var(--light-accent);
         --clr-border: var(--light-border);
         --clr-border-subtle: var(--light-border-subtle);
+
+        --clr-star-light-09: rgba(0, 0, 0, 0.9);
+        --clr-star-light-08: rgba(0, 0, 0, 0.8);
+        --clr-star-light-07: rgba(0, 0, 0, 0.7);
+        --clr-star-light-06: rgba(0, 0, 0, 0.6);
+        --clr-star-light-05: rgba(0, 0, 0, 0.5);
+        --clr-star-light-04: rgba(0, 0, 0, 0.4);
     }
 }
 

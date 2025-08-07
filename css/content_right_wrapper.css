@@ -1,5 +1,5 @@
 .content_right {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     width: 90%;
     min-width: 80%;
 }
@@ -27,4 +27,256 @@
 
 .content_right .sub_content {
     font-size: var(--fs-500);
+}
+
+/* ########################################## */
+
+/* Sterne Animationen */
+.stars,
+.stars:before,
+.stars:after {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.stars {
+    background-image: radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.5), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: zoom 20s infinite;
+}
+
+.stars:before {
+    content: "";
+    background-image: radial-gradient(1px 1px at 30px 40px, rgba(255, 255, 200, 0.9), transparent),
+        radial-gradient(1px 1px at 70px 80px, rgba(255, 255, 200, 0.6), transparent),
+        radial-gradient(1px 1px at 110px 10px, rgba(255, 255, 200, 0.8), transparent),
+        radial-gradient(2px 2px at 150px 60px, rgba(255, 255, 200, 0.4), transparent);
+    background-repeat: repeat;
+    background-size: 250px 120px;
+    animation: zoom 10s infinite linear;
+}
+
+.stars:after {
+    content: "";
+    background-image: radial-gradient(1px 1px at 50px 50px, rgba(255, 240, 200, 0.7), transparent),
+        radial-gradient(1px 1px at 100px 10px, rgba(255, 240, 200, 0.5), transparent),
+        radial-gradient(1px 1px at 150px 90px, rgba(255, 240, 200, 0.8), transparent),
+        radial-gradient(1px 1px at 200px 30px, rgba(255, 240, 200, 0.6), transparent);
+    background-repeat: repeat;
+    background-size: 300px 150px;
+    animation: zoom 15s infinite linear reverse;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1) translateX(0px) translateY(0px);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.02) translateX(-2px) translateY(-1px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) translateX(0px) translateY(0px);
+        opacity: 1;
+    }
+}
+
+/* ########################################## */
+
+.content_right_wrapper .container {
+    width: 90%;
+    min-width: 80%;
+    /* margin: 0 auto; */
+    padding: 2rem;
+    /* background: rgba(255, 255, 255, 0.95); */
+    background: var(--clr-background-secondary);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header p {
+    font-size: 1.3rem;
+    color: #7f8c8d;
+    font-weight: 300;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color: var(--clr-font-primary);
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 4px solid #667eea;
+}
+
+.intro {
+    font-size: 1.2rem;
+    color: var(--clr-font-primary);
+    text-align: justify;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--clr-background);
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.skill-category {
+    background: var(--clr-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.skill-category h3 {
+    color: var(--clr-font-primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.projects {
+    background: var(--clr-background);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.project-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--clr-background-secondary);
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-item h4 {
+    color: var(--clr-font-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.hobbies {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-radius: 10px;
+}
+
+.hobby-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.hobby-tag {
+    background: rgba(102, 126, 234, 0.2);
+    color: var(--clr-font-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.hobby-tag:hover {
+    background: rgba(102, 126, 234, 0.3);
+    transform: scale(1.05);
+}
+
+.contact {
+    text-align: center;
+    padding: 2rem;
+    background: #2c3e50;
+    color: white;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.contact h2 {
+    color: white;
+    border-left: none;
+    padding-left: 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
 }

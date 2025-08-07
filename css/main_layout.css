@@ -9,13 +9,13 @@
 
 .main_content {
     height: 100vh;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     display: grid;
     grid-template-columns: 1fr 1.618fr;
 }
 
 .content_left {
-    background-color: green;
+    /* background-color: green; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -30,12 +30,12 @@
     padding: 1rem;
     border-radius: 8px;
     /* From https://css.glass */
-    background: rgba(48, 17, 123, 0.2);
+    background: rgba(85, 44, 102, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(48, 17, 123, 0.3);
+    border: 1px solid rgba(48, 17, 123, 0.8);
 }
 
 .content_left nav ul {
@@ -94,12 +94,13 @@
 
 /* #######################################   */
 .content_right_wrapper {
-    background-color: crimson;
+    /* background-color: crimson; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 3rem;
+    overflow-y: scroll;
 }
 
 /* ####################################### */
@@ -107,7 +108,7 @@
 /* ####################################### */
 
 /* From Uiverse.io by 00Kubi */
-.container {
+.portrait_container {
     position: relative;
     width: 330px;
     height: 440px;
@@ -115,7 +116,7 @@
     margin: 1rem;
 }
 
-.container:active {
+.portrait_container:active {
     width: 320px;
     height: 420px;
 }
@@ -340,7 +341,7 @@
     filter: brightness(1.1);
 }
 
-.container:hover #card::before {
+.portrait_container:hover #card::before {
     transition: 200ms;
     content: "";
     opacity: 80%;
