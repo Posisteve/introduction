@@ -2,6 +2,8 @@
 
 Hi, ich bin ein IT-Allrounder mit einer Leidenschaft für Technologie, Problemlösung und Prozessoptimierung. Als Autodidakt bringe ich mir alles bei, was mich interessiert – und das ist eine ganze Menge! Meine bisherigen Arbeitgeber haben mich oft als Multitalent beschrieben, weil ich nicht nur technische Expertise mitbringe, sondern auch mit Ehrgeiz und Kreativität an Projekte herangehe. Ich liebe es, neue Herausforderungen anzunehmen, Prozesse zu verbessern und mit verschiedenen Persönlichkeiten zusammenzuarbeiten.
 
+Hier geht zur ausführlicheren Desktop-Version meiner [Homepage](https://posisteve.github.io/introduction/).
+
 ## Was ich kann
 
 ### Programmierung & Tools
