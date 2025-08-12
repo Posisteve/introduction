@@ -1,3 +1,316 @@
-<h1>Skills</h1>
+<h1 class="skills_title">Skills</h1>
+<p>hier wird werden immer mal wieder ein paar neue Sektionen hinzugefügt.</p>
 <hr />
-<p>hier wird noch gebaut</p>
+<div class="container_skills">
+    <div class="accordion">
+        <button class="accordion-header">Coding Style</button>
+        <div class="accordion-content">
+            <div class="content-section">
+                <p>ich verwende am liebsten lowercase snake_case für alle Variablennamen.</p>
+                <hr />
+                <p>
+                    Regel Nr. 1:<br />immer alles klein schreiben. (lowercase) <br />
+                    Ausnahmen: Konstanten, Klassennamen
+                </p>
+                <hr />
+                <p>
+                    Regel Nr. 2:<br />keine Abkürzungen.<br />
+                    Ausnahme: id Bsp.: <br />
+                    $patName --&gt; $patienten_name<br />
+                    $GDATUM --&gt; $geburts_datum<br />
+                    $snr --&gt; $seriennummer<br />
+                </p>
+                <hr />
+                <p>
+                    Regel Nr. 3:<br />Aussagekräftige Variablennamen.<br />
+                    Bsp.: <br />
+                    $id --&gt; $geraete_id<br />
+                    $name1 --&gt; $studenten_vorname<br />
+                    $KD_sql --&gt; $kunden_notizen_query<br />
+                    $KD_sql --&gt; $kunden_notizen_query<br />
+                </p>
+                <hr />
+                <p>
+                    Das sind erstmal nicht viele Regeln, aber es sind die Ausschlaggebensten. Somit ist der Code Maximal verständlich, Konsistent und einfacher
+                    Wartbar, falls man in der Zukunft noch mal was daran machen muss. Und sich dann erstmal wieder rein fuchsen und überlegen was denn da damal
+                    gemeint haben könnte.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- PHP -->
+    <div class="accordion">
+        <button class="accordion-header">PHP</button>
+        <div class="accordion-content">
+            <div class="content-section">
+                <p>
+                    Das wichtigste bei All meinen PHP Projekten war immer meine selbst erstellte Datenbakverbindungsklasse. Dabei habe ich die benennung der
+                    Methoden so gewählt, dass es dann später bei der implemenmtierung auch jemand versteht der nicht so viel ahnung hat.
+                </p>
+                <div class="code-block" data-language="php">
+                    <pre><code>
+&lt;?php
+	
+namespace lib\datenbank;
+
+use lib\tools\events\Event_log;
+
+class Verbindung
+{
+    private Event_log $event_log;
+    private static int $tableCount = 0;
+    protected $verbindung;
+    public array $output = [];
+    public int $anzahl;
+    public string $error;
+    
+    public function __construct(string $server = null)
+    {
+        $this->event_log = new Event_log((new \ReflectionClass($this))->getShortName());
+        
+        switch ($server) {
+            case 'datenbank_1':
+                $serverName = '127.0.0.1';
+                $databaseName = 'students';
+                $uid = 'steve';
+                $pwd = '$pw=100%_Geheim;';
+                break;
+            case 'datenbank_2':
+                $serverName = '127.0.0.2';
+                $databaseName = 'mitarbeiter';
+                $uid = 'steve';
+                $pwd = '$pw=110%_Geheim;';
+                break;
+            default:
+                die('Bitte als Parameter "datenbank_1" oder "datenbank_2" als Datenbank Servername mit übergeben.');
+        }
+        
+        $this->event_log->debug_nachricht('Datenbankverbindung wird aufgebaut');
+        
+        $this->verbindung = sqlsrv_connect(
+            $serverName,
+            array(
+                "Database" => $databaseName,
+                "UID" => $uid,
+                "PWD" => $pwd,
+                "CharacterSet" => "UTF-8",
+                "ReturnDatesAsStrings" => true
+            )
+        );
+        
+        if (!$this->verbindung) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        
+        $this->event_log->debug_nachricht('Datenbankverbindung erfolgreich');
+    }
+    
+    public function abfrage($query, $fehlermeldung = '0 Einträge gefunden')
+    {
+        $this->output = [];
+        $this->error = $fehlermeldung;
+        $query_mit_nocount = 'SET NOCOUNT ON ';
+        $query_mit_nocount .= $query;
+        
+        $this->event_log->debug_nachricht('SQL Query wird gesendet');
+        
+        try {
+            $sql_abfrage = sqlsrv_query($this->verbindung, $query_mit_nocount);
+            if ($sql_abfrage === false) {
+                if (($errors = sqlsrv_errors()) != null) {
+                    foreach ($errors as $error) {
+                        echo "SQLSTATE: " . $error['SQLSTATE'] . "<br />";
+                        echo "code: " . $error['code'] . "<br />";
+                        echo "message: " . mb_convert_encoding($error['message'], 'UTF-8', 'ISO-8859-1') . "<br />";
+                    }
+                    die();
+                }
+            }
+            
+            $this->event_log->debug_nachricht('SQL Query erfolgreich gesendet');
+            
+            $this->event_log->debug_nachricht('Fetch SQL Ergebnis');
+            
+            while ($row = @sqlsrv_fetch_array($sql_abfrage, SQLSRV_FETCH_ASSOC)) {
+                $this->output[] = $row;
+            }
+            
+            $this->event_log->debug_nachricht('Fetch SQL Ergebnis erfolgreich');
+            
+            sqlsrv_free_stmt($sql_abfrage);
+
+            $this->event_log->debug_nachricht('Datenbankverbindung geschlossen');
+            
+            $this->anzahl = count($this->output);
+            
+            if ($this->anzahl === 0) {
+                echo $this->fehlermeldung();
+                $this->event_log->debug_nachricht('Keine Zeilen in SQL Antwort');
+            }
+            
+        } catch (Exception $e) {
+            die("Error! " . $e);
+        }
+        
+        $this->event_log->debug_nachricht('SQL Ergebnis wird zurück gegeben ');
+        
+        return $this->output;
+    }
+    
+    public function fehlermeldung(): string
+    {
+        return $this->error;
+    }
+    
+    public function verbindung_trennen(): void
+    {
+        sqlsrv_close($this->verbindung);
+    }
+}
+?&gt;
+                    </code></pre>
+                </div>
+                <p>
+                    hier dann die Benutzung der Klasse
+                    <br />
+                    <br />
+                    Somit liest es sich so:
+                    <br />Sende neue Verbindung 'an' datenbank_1. <br />geräte = sende 'die' abfrage SELECT * FROM .... <br />sende 'befehl' verbindung trennen.
+                </p>
+                <div class="code-block" data-language="php">
+                    <pre><code>
+&lt;?php
+
+require_once __DIR__ . '/../../../vendor/autoload.php';
+	
+use lib\datenbank\Verbindung;
+
+	$sende = new Verbindung('datenbank_1');
+	
+	$geraete_query = &lt;&lt;&lt;SQL
+SELECT top (100)
+geraete.geraete_id as id,
+CONCAT(name1, &grave; &grave;, name2) as name,
+eigentum                  as eigentum,
+status                    as status,
+snr                       as seriennummer,
+
+FROM datenbank_1.dbo.geraete as geraete with (nolock)
+WHERE geraete.geraete_id = &dollar;gesuchtes_geraet
+SQL;
+	
+	
+	$geraete = $sende-&gt;abfrage($geraete_query, '');
+	$sende->verbindung_trennen();
+	
+	$geraete_html = '';
+	
+    // Ausgabe via schleife als HTML Tabellen Komponente
+	foreach ($geraete as $geraet) {
+		
+		$geraete_html .= &lt;&lt;&lt;HTML
+&lt;tr&gt;
+&lt;td class="whitespace-nowrap border border-gray-300 p-2"&gt;{$geraet['id']}&lt;/td&gt;
+&lt;td class="whitespace-nowrap border border-gray-300 p-2"&gt;{$geraet['name']}&lt;/td&gt;
+&lt;td class="whitespace-nowrap border border-gray-300 p-2"&gt;{$geraet['eigentum']}&lt;/td&gt;
+&lt;td class="whitespace-nowrap border border-gray-300 p-2"&gt;{$geraet['status']}&lt;/td&gt;
+&lt;td class="whitespace-nowrap border border-gray-300 p-2"&gt;{$geraet['seriennummer']}&lt;/td&gt;
+&lt;/tr&gt;
+HTML;
+	}
+?&gt;
+                    </code></pre>
+                </div>
+
+                <!-- <img
+                    class="screenshot-placeholder"
+                    alt="PHP Screenshot Platzhalter"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzJkMmQyZCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTA1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwN2FjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBQbGF0emhhbHRlcjwvdGV4dD48L3N2Zz4="
+                /> -->
+            </div>
+        </div>
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- CSS -->
+
+    <!--     
+    <div class="accordion">
+        <button class="accordion-header">CSS</button>
+        <div class="accordion-content">
+            <div class="content-section">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corporis, maxime quos ex tenetur voluptate beatae tempore atque laboriosam
+                    doloribus blanditiis tempora exercitationem possimus, aliquam recusandae natus quaerat culpa quasi.
+                </p>
+                <div class="code-block" data-language="css">
+                    /* Hier kannst du deinen CSS Code einfügen */ .beispiel-klasse { display: flex; align-items: center; justify-content: space-between;
+                    padding: 20px; background-color: var(--clr-background-secondary); border-radius: 8px; }
+                </div>
+                <img
+                    class="screenshot-placeholder"
+                    alt="CSS Screenshot Platzhalter"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzJkMmQyZCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTA1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwN2FjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBQbGF0emhhbHRlcjwvdGV4dD48L3N2Zz4="
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <button class="accordion-header">JavaScript</button>
+        <div class="accordion-content">
+            <div class="content-section">
+                <div class="code-block" data-language="javascript">
+                    // Hier kannst du deinen JavaScript Code einfügen function beispielFunktion() { const element = document.querySelector('.beispiel');
+                    element.addEventListener('click', (event) => { console.log('Element wurde geklickt!'); }); } beispielFunktion();
+                </div>
+                <img
+                    class="screenshot-placeholder"
+                    alt="JavaScript Screenshot Platzhalter"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzJkMmQyZCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTA1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwN2FjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBQbGF0emhhbHRlcjwvdGV4dD48L3N2Zz4="
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <button class="accordion-header">HTML</button>
+        <div class="accordion-content">
+            <div class="content-section">
+                <div class="code-block" data-language="html">
+                    &lt;!-- Hier kannst du deinen HTML Code einfügen --&gt; &lt;div class="container"&gt; &lt;h1 class="title"&gt;Beispiel
+                    Überschrift&lt;/h1&gt; &lt;p class="description"&gt; Dies ist ein Beispiel-Paragraph mit Text. &lt;/p&gt; &lt;button class="btn
+                    btn-primary"&gt; Klick mich! &lt;/button&gt; &lt;/div&gt;
+                </div>
+                <img
+                    class="screenshot-placeholder"
+                    alt="HTML Screenshot Platzhalter"
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzJkMmQyZCIvPjx0ZXh0IHg9IjIwMCIgeT0iMTA1IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwN2FjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBQbGF0emhhbHRlcjwvdGV4dD48L3N2Zz4="
+                />
+            </div>
+        </div>
+    </div> -->
+</div>
+
+<script defer>
+    accordionHeaders = document.querySelectorAll(".accordion-header");
+
+    accordionHeaders.forEach((header) => {
+        header.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            const isActive = this.classList.contains("active");
+
+            // Schließe alle anderen Accordions
+            accordionHeaders.forEach((otherHeader) => {
+                const otherContent = otherHeader.nextElementSibling;
+                otherHeader.classList.remove("active");
+                otherContent.classList.remove("active");
+            });
+
+            // Öffne das aktuelle Accordion, wenn es nicht bereits geöffnet war
+            if (!isActive) {
+                this.classList.add("active");
+                content.classList.add("active");
+            }
+        });
+    });
+</script>
